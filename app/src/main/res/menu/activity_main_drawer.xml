@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/nav_home"/>
+        <item android:id="@+id/nav_login"
+          android:title="Login into COEP Moodle"
+            android:icon="@drawable/nav_login"/>
+        <item android:id="@+id/nav_moodle"
+              android:title="Go to COEP Moodle"
+              android:icon="@drawable/nav_moodle"/>
+        <item android:id="@+id/about"
+              android:title="About"
+              android:icon="@drawable/nav_about"/>
+    </group>
+</menu>
