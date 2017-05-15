@@ -1,4 +1,4 @@
-# android_app_coep_moodle
+# COEP Moodle App
 A small utility to access COEP Moodle on mobile
 
 This app can save username and password of your COEP Moodle account.
