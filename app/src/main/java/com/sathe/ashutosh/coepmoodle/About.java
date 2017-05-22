@@ -37,7 +37,7 @@ public class About extends AppCompatActivity {
                 .withAboutAppName("COEP Moodle")
                 .withAboutIconShown(true)
                 .withAboutVersionShown(true)
-                .withAboutDescription("This is a small sample which can be set in the about my app description file.<br /><b>You can style this with html markup :D</b>")
+                .withAboutDescription(getString(R.string.about))
                 //start the activity
                 .start(this);
     }

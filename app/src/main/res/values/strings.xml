@@ -21,4 +21,5 @@
     moodle \" option from menu every time you want to see moodke.<b>DO NOT</b>change the information via login page after
     successful login. After successful login, you should always use \"GO to COEP Moodle\" option.</string>
     <string name="issues">Still have doubts/isssues ??Contect the developer. See the about page of the app from the menu.</string>
+    <string name ="about">"COEP Moodle is a small app to help students of COEP to access Moodle from their smartphones/tablets.</string>
 </resources>
