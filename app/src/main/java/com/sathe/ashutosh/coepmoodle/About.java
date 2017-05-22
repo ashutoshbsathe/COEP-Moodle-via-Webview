@@ -53,4 +53,10 @@ public class About extends AppCompatActivity {
                 //start the activity
                 .start(this);
     }
+
+    public void github(View view)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/Ashutosh-01/android_app_coep_moodle"));
+        startActivity(intent);
+    }
 }
