@@ -1,5 +1,8 @@
 package com.sathe.ashutosh.coepmoodle;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,8 +26,17 @@ public class About extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Email Address : 2ashutoshbs@gmail.com", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try{
+                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + "2ashutoshbs@gmail.com"));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Regarding the COEP Moodle App");
+                    startActivity(intent);
+                }catch(ActivityNotFoundException e){
+                    Snackbar.make(view, "Email app not found !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+
+
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
