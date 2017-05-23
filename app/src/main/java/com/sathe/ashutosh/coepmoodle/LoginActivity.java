@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         String checkIfLoginFailed = profile.getString("LoginFailed",null);
         if(checkIfLoginFailed.equalsIgnoreCase("True"))
         {
-            editor.putString("username","hahaha");
-            editor.putString("password","hahaha");
+            editor.putString("username","default");
+            editor.putString("password","default");
             editor.commit();
         }
 
@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Login Was Unsuccessful ! Please Try Again", Toast.LENGTH_LONG).show();
             editor.putString("LoginFailed","False");
-            editor.putString("username","hahaha");
-            editor.putString("password","hahaha");
+            editor.putString("username","default");
+            editor.putString("password","default");
             editor.commit();
         }
         TextView textView = (TextView) findViewById(R.id.saved_user);
-        if(username.equalsIgnoreCase("hahaha"))
+        if(username.equalsIgnoreCase("default"))
             textView.setText("No user is currently saved");
         else
             textView.setText(username);

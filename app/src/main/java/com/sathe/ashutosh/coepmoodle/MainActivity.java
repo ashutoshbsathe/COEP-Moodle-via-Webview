@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity
         {
             SharedPreferences profile = getSharedPreferences("userdata", 0);
             SharedPreferences.Editor editor = profile.edit();
-            editor.putString("username", "hahaha");
-            editor.putString("password", "hahaha");
+            editor.putString("username", "default");
+            editor.putString("password", "default");
             editor.putString("LoginFailed","NotLoggedInYet");
             editor.putString("FailedLoginAcc","false");
             editor.commit();
