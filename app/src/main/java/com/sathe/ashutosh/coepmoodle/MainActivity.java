@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity
         vinfo = "App version : "+vinfo;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        TextView version = (TextView)navigationView.getHeaderView(0).findViewById(R.id.nav_version);
-        version.setText(vinfo);
         SharedPreferences settings=getSharedPreferences("initialize", 0);
         boolean isInitialized = settings.getBoolean("Initialized", false);
         if(!isInitialized)
@@ -56,6 +54,14 @@ public class MainActivity extends AppCompatActivity
             init.putBoolean("Initialized",true);
             init.commit();
         }
+        SharedPreferences profile = getSharedPreferences("userdata", 0);
+        String logged = profile.getString("username",null);
+        if(logged.equals("default"))
+            logged = "Not logged in";
+        else
+            logged = "Logged in as " + logged;
+        TextView loggedIn = (TextView)navigationView.getHeaderView(0).findViewById(R.id.logged);
+        loggedIn.setText(logged);
 
     }
 

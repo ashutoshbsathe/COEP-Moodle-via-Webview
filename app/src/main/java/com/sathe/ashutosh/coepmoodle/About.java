@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -40,6 +41,10 @@ public class About extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView aboutVersion = (TextView)findViewById(R.id.about_version);
+        String vInfo = BuildConfig.VERSION_NAME;
+        vInfo = "COEP Moodle App Version : "+vInfo;
+        aboutVersion.setText(vInfo);
     }
     public void li(View view)
     {
