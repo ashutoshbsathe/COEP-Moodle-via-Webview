@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -34,8 +35,12 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        String vinfo = BuildConfig.VERSION_NAME;
+        vinfo = "App version : "+vinfo;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        TextView version = (TextView)navigationView.getHeaderView(0).findViewById(R.id.nav_version);
+        version.setText(vinfo);
         SharedPreferences settings=getSharedPreferences("initialize", 0);
         boolean isInitialized = settings.getBoolean("Initialized", false);
         if(!isInitialized)
