@@ -34,8 +34,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.widget.Toast.makeText;
-import static java.lang.System.exit;
-
 /**
  * Created by ashutosh on 11/5/17.
  */
