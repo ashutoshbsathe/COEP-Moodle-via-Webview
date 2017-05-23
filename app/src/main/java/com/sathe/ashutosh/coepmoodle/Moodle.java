@@ -179,32 +179,6 @@ public class Moodle extends AppCompatActivity {
 
             }
         });
-        /*webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                if (!view.getUrl().equals(url)) return;
-                // Available on KitKat and later
-                view.evaluateJavascript(
-                        "document.getElementsByClassName('loginerrormessage').length",
-                        new ValueCallback<String>() {
-                            @Override
-                            public void onReceiveValue(String errorMessageCount) {
-                                if ("0".equals(errorMessageCount)) {
-                                    // all ok
-                                } else {
-                                    // error message detected
-                                    SharedPreferences profile = getSharedPreferences("userdata",0);
-                                    SharedPreferences.Editor editor = profile.edit();
-                                    editor.putString("LoginFailed","True");
-                                    editor.commit();
-                                    Intent i = new Intent(Moodle.this,LoginActivity.class);
-                                    startActivity(i);
-                                }
-                            }
-                        }
-                );
-            }
-        });*/
     }
 
     private File createImageFile() throws IOException {
