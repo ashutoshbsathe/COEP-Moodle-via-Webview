@@ -66,16 +66,17 @@ public class LoginActivity extends AppCompatActivity {
         String username = uname.getText().toString();
         EditText pass = (EditText) findViewById(R.id.password);
         String password = pass.getText().toString();
+        if(username.equalsIgnoreCase("") || password.equalsIgnoreCase(""))
+        {
+            Toast.makeText(getApplicationContext(),"Please fill the login form correctly",Toast.LENGTH_LONG).show();
+            return;
+        }
         SharedPreferences profile = getSharedPreferences("userdata",0);
         SharedPreferences.Editor editor = profile.edit();
         editor.putString("username",username);
         editor.putString("password",password);
         editor.commit();
         Intent i = new Intent(this, Moodle.class);
-        /*Bundle profile = new Bundle();
-        profile.putString("username", username);
-        profile.putString("password", password);
-        i.putExtras(profile);*/
         startActivity(i);
     }
 }
