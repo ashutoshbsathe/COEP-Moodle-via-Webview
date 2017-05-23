@@ -384,6 +384,13 @@ public class Moodle extends AppCompatActivity {
 
             final String password = profile.getString("password", null);
             final String username = profile.getString("username", null);
+            if(profile.getString("username",null).equals("default") || profile.getString("password",null).equals("default"))
+            {
+                Toast.makeText(getApplicationContext(),"Enter your login details properly !",Toast.LENGTH_LONG).show();
+                Intent log = new Intent(Moodle.this,LoginActivity.class);
+                startActivity(log);
+                return;
+            }
             final String js = "javascript:" +
                     "document.getElementById('password').value = '" + password + "';" +
                     "document.getElementById('username').value = '" + username + "';" +

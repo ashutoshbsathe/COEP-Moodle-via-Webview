@@ -62,16 +62,24 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void login(View view)
     {
+        SharedPreferences profile = getSharedPreferences("userdata",0);
         EditText uname=(EditText) findViewById(R.id.username);
         String username = uname.getText().toString();
         EditText pass = (EditText) findViewById(R.id.password);
         String password = pass.getText().toString();
         if(username.equalsIgnoreCase("") || password.equalsIgnoreCase(""))
-        {
-            Toast.makeText(getApplicationContext(),"Please fill the login form correctly",Toast.LENGTH_LONG).show();
-            return;
+        {   if(profile.getString("username",null).equals("default")){
+                Toast.makeText(getApplicationContext(),"Login Form is empty !",Toast.LENGTH_LONG).show();
+                return ;
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Login Form is empty !", Toast.LENGTH_LONG).show();
+                Intent log = new Intent(this,Moodle.class);
+                startActivity(log);
+                Toast.makeText(getApplicationContext(),"Using last entered credentials",Toast.LENGTH_LONG).show();
+                return;
+            }
         }
-        SharedPreferences profile = getSharedPreferences("userdata",0);
         SharedPreferences.Editor editor = profile.edit();
         editor.putString("username",username);
         editor.putString("password",password);
