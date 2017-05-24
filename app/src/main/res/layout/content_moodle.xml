@@ -13,6 +13,11 @@
     tools:context="com.sathe.ashutosh.coepmoodle.Moodle"
     tools:showIn="@layout/activity_moodle"
     android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="print"
+        android:text="Print the webPage"/>
 <WebView
     android:layout_height="match_parent"
     android:layout_width="fill_parent"

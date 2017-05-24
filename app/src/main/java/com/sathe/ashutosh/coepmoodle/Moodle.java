@@ -2,8 +2,13 @@ package com.sathe.ashutosh.coepmoodle;
 
 import android.Manifest;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -124,6 +129,7 @@ public class Moodle extends AppCompatActivity {
         setContentView(R.layout.activity_moodle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         webView = (WebView) findViewById(R.id.web_moodle);
         webSettings = webView.getSettings();
         webSettings.setAppCacheEnabled(true);
@@ -407,7 +413,24 @@ public class Moodle extends AppCompatActivity {
         }
     }
 
+    public void print(View view)
+    {
+        createWebPrintJob(webView);
+    }
+    private void createWebPrintJob(WebView webView) {
 
+        // Get a PrintManager instance
+        PrintManager printManager = (PrintManager) this
+                .getSystemService(Context.PRINT_SERVICE);
+
+        // Get a print adapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
+
+        // Create a print job with name and adapter instance
+        String jobName = getString(R.string.app_name) + " Document";
+        PrintJob printJob = printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
+    }
 
 }
 
