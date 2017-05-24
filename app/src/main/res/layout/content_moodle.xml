@@ -5,23 +5,22 @@
     android:id="@+id/content_moodle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.sathe.ashutosh.coepmoodle.Moodle"
     tools:showIn="@layout/activity_moodle"
     android:orientation="vertical">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="print"
-        android:text="Print the webPage"/>
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/toolbar_moodle"/>
 <WebView
     android:layout_height="match_parent"
     android:layout_width="fill_parent"
     android:id="@+id/web_moodle">
-
 </WebView>
 </LinearLayout>
