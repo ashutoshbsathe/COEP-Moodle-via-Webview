@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Moodle">
+    tools:context=".Moodle"
+    android:theme="@style/ThemeOverlay.AppCompat.Light">
     <item
         android:id="@+id/print"
         android:orderInCategory="200"
