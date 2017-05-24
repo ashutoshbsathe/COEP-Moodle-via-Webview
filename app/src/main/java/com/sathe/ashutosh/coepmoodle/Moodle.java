@@ -154,26 +154,26 @@ public class Moodle extends AppCompatActivity {
             public void onDownloadStart(String url, String userAgent,
                                         String contentDisposition, String mimetype,
                                         long contentLength) {
-
-                if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                    int perm = 0;
-                    makeText(getApplicationContext(), "Please grant Permission to Write Storage", Toast.LENGTH_LONG).show();
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, perm);
-                }
-                DownloadManager.Request request = new DownloadManager.Request(
-                        Uri.parse(url));
+                try {
+                    DownloadManager.Request request = new DownloadManager.Request(
+                            Uri.parse(url));
                 /* Let's have some Cookies !!!*/
-                String cookies = CookieManager.getInstance().getCookie(url);
-                request.addRequestHeader("cookie", cookies);
-                //Yummy !!
-                request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //Notify client once download is completed!
-                final String filename = URLUtil.guessFileName(url, contentDisposition, mimetype);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
-                DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-                dm.enqueue(request);
-                makeText(getApplicationContext(), "Downloading File", //To notify the Client that the file is being downloaded
-                        Toast.LENGTH_LONG).show();
+                    String cookies = CookieManager.getInstance().getCookie(url);
+                    request.addRequestHeader("cookie", cookies);
+                    //Yummy !!
+                    request.allowScanningByMediaScanner();
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //Notify client once download is completed!
+                    final String filename = URLUtil.guessFileName(url, contentDisposition, mimetype);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
+                    DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                    dm.enqueue(request);
+                    makeText(getApplicationContext(), "Downloading File", //To notify the Client that the file is being downloaded
+                            Toast.LENGTH_LONG).show();
+                }
+                catch(SecurityException e)
+                {
+                    Toast.makeText(getApplicationContext(),"Please grant the storage permission !",Toast.LENGTH_LONG).show();
+                }
 
             }
         });
