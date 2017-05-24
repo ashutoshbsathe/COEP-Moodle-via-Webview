@@ -3,12 +3,15 @@ package com.sathe.ashutosh.coepmoodle;
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -204,7 +207,8 @@ public class Moodle extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch(id)
         {
-            case (R.id.storage) :
+            case (R.id.storage) :createStorageDialog();
+                                 break;
             case (R.id.refresh) :webView.loadUrl("javascript:window.location.reload(true)") ;
                                  break;
             case (R.id.print)   :createWebPrintJob(webView);
@@ -453,6 +457,48 @@ public class Moodle extends AppCompatActivity {
         PrintJob printJob = printManager.print(jobName, printAdapter,
                 new PrintAttributes.Builder().build());
     }
+    public void createStorageDialog()
+    {
+        final Integer WRITE_EXST = 0x3;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(Build.VERSION.SDK_INT>=23)
+        {
+            int perm = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if(perm==PackageManager.PERMISSION_DENIED)
+            {
+                builder.setTitle("Storage Permissions")
+                        .setMessage("Storage permissions are not granted.You will not be able to upload/downloads files.")
+                        .setPositiveButton("GIVE PERMISSION",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User clicked OK button
+                                ActivityCompat.requestPermissions(Moodle.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXST);
 
+                            }
+                        })
+                        .setNegativeButton("I WON'T GIVE PERMISSION",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                finish();
+                            }
+                        });
+            }
+            else
+            {
+                builder.setTitle("Storage Permissions")
+                        .setMessage("Storage permissions are already granted! You will be able to upload/download files .")
+                        .setPositiveButton("GREAT !",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id)
+                            {
+                                finish();
+                            }
+                        });
+            }
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"No need to check permissions on your android version !",Toast.LENGTH_LONG).show();
+        }
+    }
 }
 
