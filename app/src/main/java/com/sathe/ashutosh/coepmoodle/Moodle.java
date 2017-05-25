@@ -477,7 +477,7 @@ public class Moodle extends AppCompatActivity {
                         })
                         .setNegativeButton("I WON'T GIVE PERMISSION",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                finish();
+                                return ;
                             }
                         });
             }
@@ -488,7 +488,7 @@ public class Moodle extends AppCompatActivity {
                         .setPositiveButton("GREAT !",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id)
                             {
-                                finish();
+                                return ;
                             }
                         });
             }
